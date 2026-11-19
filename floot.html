@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>디스코드 모음 | Poland</title>
+<link rel="icon" href="covenant.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#190b2b;--panel:#27143f;--panel-2:#321a52;--line:#4b2b78;
+  --text:#efe9f8;--muted:#ab9ec6;--silver:#d6cde6;--glow:#8f4fd6;
+  --serif:'Noto Serif KR','Batang',serif;
+  --sans:'Noto Sans KR','Malgun Gothic',sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.8;min-height:100vh}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--silver);outline-offset:3px}
+.wrap{width:min(860px,92vw);margin-inline:auto}
+
+.nav{border-bottom:1px solid var(--line);background:rgba(25,11,43,.92);position:sticky;top:0;z-index:5;backdrop-filter:blur(6px)}
+.nav .wrap{width:min(960px,92vw);display:flex;align-items:center;justify-content:space-between;min-height:56px;flex-wrap:wrap;padding-block:6px;gap:2px 12px}
+.nav strong{font-family:var(--serif);font-weight:600;letter-spacing:.02em}
+.nav a{text-decoration:none;color:var(--muted);font-size:.95rem;padding:6px 12px;border-radius:6px}
+.nav a:hover{color:var(--text);background:var(--panel)}
+.nav .links{display:flex;gap:4px;flex-wrap:wrap}
+.nav a[aria-current]{color:var(--text)}
+
+.hero{text-align:center;padding:52px 0 14px;background:radial-gradient(ellipse 60% 80% at 50% 30%,rgba(143,79,214,.25),transparent 70%)}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(2rem,7vw,3.2rem);color:var(--silver);line-height:1.2}
+.hero p{color:var(--muted);margin-top:8px}
+
+section{padding:30px 0 6px}
+h2{font-family:var(--serif);font-weight:600;font-size:1.5rem;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+
+/* 디스코드 카드 */
+.cards{display:grid;gap:14px}
+.card{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;transition:border-color .2s}
+.card:hover{border-color:var(--glow)}
+.num{grid-row:span 3;align-self:start;width:42px;height:42px;border-radius:50%;background:var(--panel-2);border:1px solid var(--line);display:grid;place-items:center;font-family:var(--serif);font-weight:900;color:var(--silver);font-size:1.15rem}
+.head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.card h3{font-family:var(--serif);font-size:1.25rem;color:var(--silver)}
+.badge{font-size:.8rem;font-weight:700;border-radius:999px;padding:0 12px;line-height:1.7}
+.badge.must{background:var(--glow);color:#fff;border:1px solid var(--glow)}
+.badge.almost{background:transparent;color:#d9b8ff;border:1px solid var(--glow)}
+.badge.rec{background:transparent;color:var(--silver);border:1px solid var(--silver)}
+.card p.d{color:#dcd3ea;font-size:.97rem}
+.link{color:var(--muted);font-size:.88rem;word-break:break-all}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.btn{display:inline-block;text-decoration:none;font:inherit;font-weight:700;font-size:.92rem;background:var(--glow);color:#fff;padding:7px 20px;border-radius:999px;border:1px solid var(--glow);cursor:pointer;transition:background .2s}
+.btn:hover{background:#a566ea}
+.btn.alt{background:transparent;color:var(--silver);border-color:var(--line)}
+.btn.alt:hover{background:var(--panel-2);border-color:var(--glow)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;color:var(--muted);font-size:.88rem;margin:0 0 16px}
+
+/* 인증 안내 */
+.verify{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.verify ol{padding-left:1.3em;margin-top:10px}
+.verify li{margin-top:10px;color:#dcd3ea}
+.verify li strong{color:var(--text)}
+.verify code{background:var(--panel-2);border:1px solid var(--line);border-radius:5px;padding:0 6px;font-size:.9em;color:var(--silver)}
+.verify .tip{margin-top:16px;padding:10px 14px;border-left:4px solid var(--glow);background:var(--bg);border-radius:0 8px 8px 0;color:#dcd3ea}
+.verify .tip + .tip{margin-top:10px}
+
+.go{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:36px 0 70px}
+.go .btn{padding:13px 30px;font-size:1rem}
+
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--panel-2);border:1px solid var(--glow);color:var(--text);padding:8px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+footer{border-top:1px solid var(--line);color:var(--muted);text-align:center;padding:24px 0;font-size:.85rem}
+@media (max-width:520px){.nav a{padding:6px 8px;font-size:.85rem}.nav strong{font-size:.95rem}.card{grid-template-columns:1fr}.num{grid-row:auto;width:34px;height:34px;font-size:1rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <strong>Poland</strong>
+    <nav class="links">
+      <a href="index.html">마을 소개</a>
+      <a href="int.html">마을원 소개</a>
+      <a href="str.html">커버넌트 · 폴란드</a>
+      <a href="bool.html">뉴비 가이드</a>
+      <a href="floot.html" aria-current="page">디스코드</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <h1>디스코드 모음</h1>
+      <p>Planet Earth를 하면서 꼭 들어와야 하는 디스코드를 모아 놨어요.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section>
+      <h2>들어와야 하는 디스코드</h2>
+      <div class="legend">
+        <span><span class="badge must">필수</span> 꼭 들어오세요</span>
+        <span><span class="badge almost">거의 필수</span> 거의 모두 들어와 있어요</span>
+        <span><span class="badge rec">추천</span> 필요한 사람만</span>
+      </div>
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <section>
+      <h2>인증은 이렇게 하세요</h2>
+      <div class="verify">
+        <p>위 디스코드는 대부분 <strong>입장한 뒤 인증을 해야</strong> 다른 채널이 열려요. 서버마다 양식이 조금씩 달라서, 들어가면 안내된 양식대로 쓰는 게 가장 중요해요.</p>
+        <ol>
+          <li><strong>초대 링크로 입장해요.</strong> 위 카드의 "입장하기" 버튼을 누르면 돼요.</li>
+          <li><strong>인증 채널을 찾아요.</strong> 처음에는 보이는 채널이 적어요. <code>인증</code>, <code>규칙</code>, <code>입장</code>, <code>환영</code> 같은 이름의 채널을 먼저 열어 보세요.</li>
+          <li><strong>안내된 양식 그대로 작성해요.</strong> 보통 마인크래프트 닉네임 같은 정보를 적어요. 어떤 항목을 적는지, 어떤 순서로 쓰는지는 채널의 안내 글에 나와 있으니 문구와 순서를 바꾸지 말고 그대로 따라 쓰세요.</li>
+          <li><strong>승인을 기다려요.</strong> 운영진이 확인하면 역할이 부여되고, 숨겨져 있던 채널이 열려요.</li>
+          <li><strong>안 열리면 문의해요.</strong> 문의나 티켓 채널이 있다면 그곳에 상황을 적어 주세요.</li>
+        </ol>
+        <p class="tip">💡 닉네임은 <strong>대소문자와 밑줄(_)까지 정확히</strong> 적어야 해요. 예를 들어 <code>_PoLitu</code>처럼 앞에 밑줄이 붙는 닉네임은 밑줄을 빼먹으면 인증이 안 될 수 있어요.</p>
+        <p class="tip">💡 서버마다 인증 양식이 달라서 한 곳에서 인증했더라도 다른 서버에서 다시 해야 해요. 순서는 플래닛어스 → 커버넌트 → 폴란드 → 무림맹을 추천해요.</p>
+        <p class="tip">💡 디스코드 초대 링크는 이 페이지나 믿을 수 있는 국가원이 알려 준 것만 쓰세요. 모르는 사람이 DM으로 보낸 링크는 눌러 보지 마세요.</p>
+      </div>
+    </section>
+
+    <div class="go">
+      <a class="btn alt" href="bool.html">뉴비 가이드 보기</a>
+      <a class="btn alt" href="int.html">마을원 소개 보기</a>
+      <a class="btn alt" href="index.html">마을 소개 보기</a>
+    </div>
+  </div>
+</main>
+
+<footer>Poland · The Covenant · Planet Earth 마을 가이드</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* 디스코드 목록 — 순서대로 나와요.
+   level: must(필수) / almost(거의 필수) / rec(추천) */
+const SERVERS = [
+  { name:'플래닛어스 공식 디스코드', level:'must',   url:'https://discord.gg/planetearth',
+    desc:'플래닛어스 서버 공식 디스코드예요. 공지와 이벤트가 올라오고 국가 홍보도 여기서 해요. 당연히 들어와야 해요.' },
+  { name:'점령전 · 컨퀘스트 디스코드', level:'rec',    url:'https://discord.gg/rhPBGuGBpd',
+    desc:'점령전을 할 때 필요한 디스코드예요. 주로 일요일에 컨퀘스트를 하는데, 참여할 거라면 들어오는 걸 추천해요.' },
+  { name:'The Covenant (커버넌트) 국가 디스코드', level:'must', url:'https://discord.gg/jYXxsZtnts',
+    desc:'우리 국가 커버넌트의 초대 링크예요. 필수예요!' },
+  { name:'Poland (폴란드) 마을 디스코드', level:'must', url:'https://discord.gg/3d7hjM83WY',
+    desc:'폴란드 마을원들이 모이는 디스코드예요. 이것도 필수예요!' },
+  { name:'무림맹 디스코드', level:'almost', url:'https://discord.gg/XcUdawcMvr',
+    desc:'커버가 가입해 있는 세력 무림맹의 디스코드예요. 거의 필수예요!' }
+];
+const LABEL = { must:'필수', almost:'거의 필수', rec:'추천' };
+
+const toast = document.getElementById('toast');
+let timer;
+function say(msg){
+  toast.textContent = msg; toast.classList.add('show');
+  clearTimeout(timer); timer = setTimeout(() => toast.classList.remove('show'), 1800);
+}
+async function copy(url){
+  try { await navigator.clipboard.writeText(url); say('링크를 복사했어요'); }
+  catch (e) { window.prompt('아래 링크를 복사하세요', url); }
+}
+
+const box = document.getElementById('cards');
+SERVERS.forEach((s, i) => {
+  const card = document.createElement('article');
+  card.className = 'card';
+
+  const num = document.createElement('div');
+  num.className = 'num'; num.textContent = i + 1;
+
+  const head = document.createElement('div');
+  head.className = 'head';
+  const h = document.createElement('h3'); h.textContent = s.name;
+  const b = document.createElement('span'); b.className = 'badge ' + s.level; b.textContent = LABEL[s.level];
+  head.append(h, b);
+
+  const d = document.createElement('p'); d.className = 'd'; d.textContent = s.desc;
+
+  const wrap = document.createElement('div');
+  const l = document.createElement('div'); l.className = 'link'; l.textContent = s.url;
+  const acts = document.createElement('div'); acts.className = 'acts';
+  const join = document.createElement('a');
+  join.className = 'btn'; join.href = s.url; join.target = '_blank'; join.rel = 'noopener noreferrer'; join.textContent = '입장하기';
+  const cp = document.createElement('button');
+  cp.type = 'button'; cp.className = 'btn alt'; cp.textContent = '링크 복사';
+  cp.onclick = () => copy(s.url);
+  acts.append(join, cp);
+  wrap.append(l, acts);
+
+  const body = document.createElement('div');
+  body.append(head, d, wrap);
+  card.append(num, body);
+  box.appendChild(card);
+});
+</script>
+</body>
+</html>

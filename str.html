@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>커버와 폴란드, 무림맹 | Poland</title>
+<link rel="icon" href="covenant.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#190b2b;--panel:#27143f;--panel-2:#321a52;--line:#4b2b78;
+  --text:#efe9f8;--muted:#ab9ec6;--silver:#d6cde6;--glow:#8f4fd6;
+  --serif:'Noto Serif KR','Batang',serif;
+  --sans:'Noto Sans KR','Malgun Gothic',sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.8;min-height:100vh}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--silver);outline-offset:3px}
+.wrap{width:min(860px,92vw);margin-inline:auto}
+
+.nav{border-bottom:1px solid var(--line);background:rgba(25,11,43,.92);position:sticky;top:0;z-index:5;backdrop-filter:blur(6px)}
+.nav .wrap{width:min(960px,92vw);display:flex;align-items:center;justify-content:space-between;min-height:56px;flex-wrap:wrap;padding-block:6px;gap:2px 12px}
+.nav strong{font-family:var(--serif);font-weight:600;letter-spacing:.02em}
+.nav a{text-decoration:none;color:var(--muted);font-size:.95rem;padding:6px 12px;border-radius:6px}
+.nav a:hover{color:var(--text);background:var(--panel)}
+.nav .links{display:flex;gap:4px}
+.nav a[aria-current]{color:var(--text)}
+
+.hero{text-align:center;padding:56px 0 20px;background:radial-gradient(ellipse 60% 80% at 50% 30%,rgba(143,79,214,.25),transparent 70%)}
+.hero img{width:110px;height:110px;border-radius:50%;box-shadow:0 0 0 3px var(--line),0 0 50px rgba(143,79,214,.45)}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(2rem,7vw,3.2rem);margin-top:18px;color:var(--silver);line-height:1.2}
+.hero p{color:var(--muted);margin-top:8px}
+
+section{padding:34px 0}
+h2{font-family:var(--serif);font-weight:600;font-size:1.6rem;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+p.t{color:#dcd3ea;margin-top:12px}
+p.t b{color:var(--text)}
+
+.war{display:inline-block;background:#5a1f3a;border:1px solid #a33a6b;color:#ffd6e6;border-radius:999px;padding:0 12px;font-size:.85rem;font-weight:700;vertical-align:middle;margin-left:6px}
+
+/* 눌러서 열리는 단어 */
+.term{
+  font:inherit;font-weight:700;color:var(--silver);background:var(--panel-2);
+  border:1px solid var(--glow);border-radius:6px;padding:0 10px;cursor:pointer;
+  transition:background .2s;
+}
+.term:hover{background:var(--glow);color:#fff}
+.term::after{content:" ▾";font-size:.8em}
+.term[aria-expanded="true"]::after{content:" ▴"}
+
+/* 무림맹 토너먼트 */
+.bracket{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 12px 10px}
+.bracket[hidden]{display:none}
+.bracket h3{font-family:var(--serif);text-align:center;font-size:1.2rem;color:var(--silver)}
+.bracket svg{display:block;width:100%;height:auto;margin-top:6px}
+.bracket .cap{text-align:center;color:var(--muted);font-size:.85rem;margin-top:2px}
+.ln{stroke:var(--line);stroke-width:3;fill:none;stroke-linecap:round}
+.ln.ally{stroke:var(--silver);stroke-dasharray:6 6}
+.node rect{fill:var(--panel-2);stroke:var(--line);stroke-width:2}
+.node text{fill:var(--text);font-family:var(--sans);font-weight:700;font-size:22px;text-anchor:middle;dominant-baseline:central}
+.node.center rect{fill:var(--glow);stroke:var(--silver)}
+.node.center text{fill:#fff;font-size:26px;font-family:var(--serif);font-weight:900}
+.node.cover rect{fill:var(--bg);stroke:var(--silver);stroke-width:2.5}
+.node.cover text{text-anchor:start}
+
+
+.go{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:36px 0 70px}
+.btn{display:inline-block;text-decoration:none;font-weight:700;background:var(--glow);color:#fff;padding:13px 30px;border-radius:999px;transition:background .2s,transform .2s}
+.btn:hover{background:#a566ea;transform:translateY(-2px)}
+.btn.alt{background:transparent;border:1px solid var(--glow);color:var(--silver)}
+.btn.alt:hover{background:var(--panel-2)}
+
+footer{border-top:1px solid var(--line);color:var(--muted);text-align:center;padding:24px 0;font-size:.85rem}
+@media (max-width:520px){.nav a{padding:6px 8px;font-size:.85rem}.nav strong{font-size:.95rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <strong>Poland</strong>
+    <nav class="links">
+      <a href="index.html">마을 소개</a>
+      <a href="int.html">마을원 소개</a>
+      <a href="str.html" aria-current="page">커버넌트 · 폴란드</a>
+      <a href="bool.html">뉴비 가이드</a>
+      <a href="floot.html">디스코드</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <img src="covenant.png" alt="The Covenant 국가 문장">
+      <h1>커버 · 폴란드 · 무림맹</h1>
+      <p>대략 알아보기</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2>커버넌트 (The Covenant)</h2>
+      <p class="t"><b>커버넌트</b>는 해전에 강한 강대국이에요. 이 문서에서는 줄여서 <b>커버</b>라고 불러요.</p>
+      <p class="t">커버는 현재 <b>에포크스</b>라는 세력과 전쟁 중이에요. <span class="war">전쟁 중</span></p>
+      <p class="t">이 전쟁에 맞서기 위해 커버는 <button type="button" class="term" id="term" aria-expanded="false" aria-controls="bracket">무림맹</button>이라는 세력에 가입해 있어요. 무림맹을 누르면 구성을 볼 수 있어요.</p>
+
+      <div class="bracket" id="bracket" hidden>
+        <h3>무림맹 구성</h3>
+        <svg viewBox="0 0 600 330" role="img" aria-label="무림맹 구성도: 화산을 중심으로 연의제국, 몽골제국, 소련이 아래에 있고, 커버는 화산 옆에 있어요.">
+          <!-- 연결선 -->
+          <path class="ln" d="M300 90 V170"/>
+          <path class="ln" d="M100 170 H500"/>
+          <path class="ln" d="M100 170 V230"/>
+          <path class="ln" d="M300 170 V230"/>
+          <path class="ln" d="M500 170 V230"/>
+          <path class="ln ally" d="M370 60 H430"/>
+
+          <!-- 화산 (중심) -->
+          <g class="node center">
+            <rect x="230" y="30" width="140" height="60" rx="12"/>
+            <text x="300" y="61">화산</text>
+          </g>
+
+          <!-- 커버 (화산 옆) -->
+          <g class="node cover">
+            <rect x="430" y="30" width="140" height="60" rx="12"/>
+            <image href="covenant.png" x="440" y="40" width="40" height="40"/>
+            <text x="490" y="61">커버</text>
+          </g>
+
+          <!-- 하위 국가 -->
+          <g class="node">
+            <rect x="30" y="230" width="140" height="60" rx="12"/>
+            <text x="100" y="261">연의제국</text>
+          </g>
+          <g class="node">
+            <rect x="230" y="230" width="140" height="60" rx="12"/>
+            <text x="300" y="261">몽골제국</text>
+          </g>
+          <g class="node">
+            <rect x="430" y="230" width="140" height="60" rx="12"/>
+            <text x="500" y="261">소련</text>
+          </g>
+        </svg>
+        <p class="cap">화산을 중심으로 연의제국, 몽골제국, 소련이 함께하고, 커버는 화산 옆에서 함께해요.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>폴란드 (Poland)</h2>
+      <p class="t"><b>Poland</b>는 실제 폴란드의 이름을 따온 마을이고, 소속 국가는 <b>커버</b>예요. 자세한 소개는 <a href="index.html"><b>마을 소개</b></a> 페이지에서 볼 수 있어요.</p>
+    </div>
+  </section>
+
+  <div class="go">
+    <a class="btn" href="index.html">마을 소개 보기</a>
+    <a class="btn alt" href="int.html">마을원 소개 보기</a>
+    <a class="btn alt" href="bool.html">뉴비 가이드 보기</a>
+  </div>
+</main>
+
+<footer>Poland · The Covenant · Planet Earth 마을 가이드</footer>
+
+<script>
+const term = document.getElementById('term');
+const panel = document.getElementById('bracket');
+term.addEventListener('click', () => {
+  const open = panel.hasAttribute('hidden');
+  panel.toggleAttribute('hidden', !open);
+  term.setAttribute('aria-expanded', open);
+});
+</script>
+</body>
+</html>
